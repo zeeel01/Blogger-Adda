@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    {% extends 'header.html' %}
+    {% block homeactive %} active {% endblock homeactive %}
+    {% block my_blogs %}
+    <div class="container my-3">
+        <div class="row">
+            
+            {% for i in cat %}
+            <div class="col-lg-2 text-dark my-2">
+                <center>
+                    <img src="{{i.img.url}}" height="80px" width = "80px" style="border-radius: 50%;"></img>
+                    <br>
+                    <a href="{% url 'blogs' i.id %}" class="text-dark"><button class=" col-lg-12 btn btn-warning my-2 text-dark">{{i.name}}</buton></a>
+                </center>
+            </div>
+            {% endfor %}
+                
+            
+        </div>
+        <div class="row">
+            <div class="col-lg-12 my-5">
+                <a href="{% url 'all_blogs' %}" class="text-dark"><button class="btn btn-warning btn-block text-dark">View all blogs</button></a>
+            </div>
+        </div>
+    </div>
+        <!-- <div style="margin-left: 10%; margin-right: 10%;">
+    
+            {% for blog in blogs %}
+
+                <div class="mx-5 mt-5 px-3 pt-3 pb-3 border border-light rounded mt-5 mb-5 bg-primary text-light">
+
+                    <u><h2>{{blog.title}}</h2></u>
+
+                    <div class="mx-5 mt-3">
+
+                        <p style="font-size: 1.5vw;">{{blog.content}}</p>
+                        <div class="text-center mt-5">
+                            <img src="{{blog.img.url}}" width="350vw" height="250vw">
+                        </div>
+                        <p class="mt-3 text-right mr-5" style="font-size: 1.5vw;">- By : <u>{{blog.author}}</u></p>
+
+                    </div>
+                
+            
+                </div>
+        
+            {% endfor %}
+        </div> -->
+        
+    
+    {% endblock my_blogs %}
+    
+</body>
+</html>

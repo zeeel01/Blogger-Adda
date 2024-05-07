@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Blog</title>
+</head>
+<body>
+       <!-- Message Display -->
+       {% extends 'header.html' %}
+
+       {% block newblogactive %} active {% endblock newblogactive %}
+       
+       {% block my_blogs %}
+
+       
+           
+       <div class="row">
+        <div class="col">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                <strong>{{message}}</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <br><br>
+
+    <div class="container" >
+        <form method="POST" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            {% for fm in  form%}
+
+           <p style="font-size: 1.5vw;">{{fm.label}} </p> {{fm}}<br>
+              
+            {% endfor %}
+            <br>
+            <input type="submit" class="btn btn-warning my-2 my-sm-0" value="Publish">
+        </form>
+    </div>
+    {% endblock my_blogs %}
+    
+</body>
+</html>

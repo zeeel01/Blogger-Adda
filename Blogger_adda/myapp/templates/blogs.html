@@ -1,0 +1,30 @@
+{% extends 'header.html' %}
+
+{% block my_blogs %}
+        <div class="container">
+    
+            {% for blog in all_data%}
+
+                <div class="mx-2 mt-5 px-3 pt-3 pb-3 mt-5 mb-5 text-dark" style="border:solid #ffc107 7px; border-radius: 1%;">
+                    
+                    <a href="{% url 'blog_detail' blog.id %}"><u><h2 style="display: inline; color: black;" class="ml-4">{{blog.title}}</h2></u></a>
+
+                    <div class="mx-5 mt-3">
+
+                        <p style="font-size: 1.5vw;">{{blog.content}}</p>
+                        <div class="text-center mt-5">
+                            <img class="border border-1" src="{{blog.img.url}}" width="350vw" height="250vw">
+                        </div>
+                        <p class="mt-3 text-right mr-5" style="font-size: 1.5vw;">- By : <u>{{blog.author}}</u></p>
+
+                    </div>
+                
+            
+                </div>
+        
+            {% endfor %}
+        </div>
+    
+{% endblock my_blogs %}
+
+    

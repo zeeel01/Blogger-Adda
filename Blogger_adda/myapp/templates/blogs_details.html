@@ -1,0 +1,65 @@
+{% extends 'header.html' %}
+
+{% block my_blogs %}
+<div class="container">
+
+
+
+    <div class="mx-2 mt-5 px-3 pt-3 pb-3 mt-5 mb-5 text-dark" style="border:solid #ffc107 7px; border-radius: 1%;">
+
+        <u>
+            <h2 style="display: inline;" class="ml-4">{{blog.title}}</h2>
+        </u>
+
+        <div class="mx-5 mt-3">
+
+            <p style="font-size: 1.5vw;">{{blog.content}}</p>
+            <div class="text-center mt-5">
+                <img class="border border-1" src="{{blog.img.url}}" width="350vw" height="250vw">
+            </div>
+            <p class="mt-5 text-right mr-5" style="font-size: 1.5vw;">- By : <u>{{blog.author}}</u> 
+                {% if liked %}
+                <a href="{% url 'likepost' blog.id %} " style="text-decoration:none;">
+                    <i class="fa fa-heart mx-5" style="font-size:36px;color:red"></i>
+            </a>{{no_of_likes}} likes</p>
+            {% else %}
+
+            <a href="{% url 'likepost' blog.id %}" style="text-decoration:none;"><i class="fa fa-heart mx-5" style="font-size:36px;color:black"></i>
+            </a> {{no_of_likes}} likes</p>
+            {% endif %}
+
+            <div class="col-lg-12 my-5"> 
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form.new_comment}}
+                    <button type="submit" class="btn btn-warning my-4">Post Comment</button>
+                </form>
+            </div>
+
+            <div class="author-thumb ">
+                <h2><u>Comments</u></h2>
+            </div>
+            
+            {% for comment in all_comm %}
+                
+            
+                
+            <div class="right-content mt-4">
+              <h4>{{comment.new_comment}}</h4>
+              <p style="text-align: right;">by : {{comment.asked_by}} &nbsp; &nbsp; &nbsp;{{comment.asked_at}}</p>
+              
+            </div>
+            <hr>
+            {% endfor %}
+
+
+        </div>
+
+
+    </div>
+    </a>
+
+
+</div>
+
+{% endblock my_blogs %}
